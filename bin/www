@@ -4,13 +4,17 @@
  * Module dependencies.
  */
 
-var app = require('../dist/app').default;
+var app = require('../dist/src/app').default;
 var debug = require('debug')('008-setup:server');
 var http = require('http');
-
+const fs = require('fs/promises');
+const path = require('path');
 /**
  * Get port from environment and store in Express.
  */
+
+const pathData1 = path.join(__dirname, '../dataBase/transactions.json');
+const pathData2 = path.join(__dirname, '../dataBase/balances.json');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
@@ -19,13 +23,27 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+fs.readFile(pathData1).catch((err) => {
+  if (err.code === 'ENOENT') {
+    fs.writeFile(pathData1, JSON.stringify([]));
+  }
+});
+
+fs.readFile(pathData2).catch((err) => {
+  if (err.code === 'ENOENT') {
+    fs.writeFile(pathData2, JSON.stringify([]));
+  }
+});
+
 var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, () => {
+  console.log(`we are live on port ${port}`);
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
