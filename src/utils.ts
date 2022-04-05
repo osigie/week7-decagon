@@ -26,19 +26,6 @@ export async function create2() {
   return JSON.parse(balanceDb);
 }
 
-// export const transferError = (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   create2().then((data) => {
-//     if (req.body && data.length === 0) {
-//       return res
-//         .status(StatusCodes.BAD_REQUEST)
-//         .json({ message: 'Account number not found' });
-//     }
-//   });
+// //middleware to check if there is user
 
-//   next();
-// };
 export const nanoid = customAlphabet('1234567890', 10);

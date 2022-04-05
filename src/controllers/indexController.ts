@@ -9,6 +9,7 @@ import {
   transactionsPath,
 } from '../utils';
 import { getStatusCode, StatusCodes } from 'http-status-codes';
+import { Balance } from '../interface';
 
 //Create account
 const createAccount = async (req: Request, res: Response) => {
@@ -18,7 +19,7 @@ const createAccount = async (req: Request, res: Response) => {
     const userInput = req.body;
     const updatedBody = Object.assign(
       { id: 0 },
-      userInput,
+      { balance: userInput.balance },
       { id: accN },
       { createdAt: new Date().toLocaleString('en-US', { timeZone: 'UTC' }) },
     );
@@ -37,7 +38,7 @@ const getAccount = async (req: Request, res: Response) => {
   try {
     let dB = await create2();
     const idFromUser = req.params.id;
-    const finder = dB.find((each: any) => each.id === idFromUser);
+    const finder = dB.find((each: Balance) => each.id === idFromUser);
     res.status(StatusCodes.ACCEPTED).json(finder);
   } catch (error) {}
 };
@@ -57,9 +58,11 @@ export const transfer = async (req: Request, res: Response) => {
     let transactionsDb = await create1();
 
     const indexFrom = accountDb.findIndex(
-      (each: any) => each.id === req.body.from,
+      (each: Balance) => each.id === req.body.from,
     );
-    const indexTo = accountDb.findIndex((each: any) => each.id === req.body.to);
+    const indexTo = accountDb.findIndex(
+      (each: Balance) => each.id === req.body.to,
+    );
 
     if (req.body.amount > accountDb[indexFrom].balance) {
       res
@@ -104,8 +107,5 @@ export const transfer = async (req: Request, res: Response) => {
       .json({ msg: 'Account number not found' });
   }
 };
-
-
-
 
 export { createAccount, getAccount, getAllAccount };

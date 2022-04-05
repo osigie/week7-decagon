@@ -6,10 +6,16 @@ import {
   getAllAccount,
   transfer,
 } from '../controllers/indexController';
-// import { transferError } from '../utils';
 
-router.route('/create-account').post(createAccount);
+import {
+  createAccountSchema,
+  transferSchema,
+  validate,
+} from '../validation/indexValidation';
+router
+  .route('/create-account')
+  .post(validate(createAccountSchema), createAccount);
 router.route('/balance/:id').get(getAccount);
 router.route('/balance').get(getAllAccount);
-router.route('/transfer').post( transfer);
+router.route('/transfer').post(validate(transferSchema), transfer);
 export default router;
