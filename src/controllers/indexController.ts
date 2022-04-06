@@ -15,13 +15,12 @@ import { Balance } from '../interface';
 const createAccount = async (req: Request, res: Response) => {
   try {
     const accN = await nanoid();
-    const numberAcc = +accN;
     let dB = await create2();
     const userInput = req.body;
     const updatedBody = Object.assign(
       { account: 0 },
       { balance: userInput.balance },
-      { account: numberAcc },
+      { account: accN },
       { createdAt: new Date().toLocaleString('en-US', { timeZone: 'UTC' }) },
     );
     dB.push(updatedBody);
@@ -38,7 +37,7 @@ const createAccount = async (req: Request, res: Response) => {
 const getAccount = async (req: Request, res: Response) => {
   try {
     let dB = await create2();
-    const idFromUser = +req.params.id;
+    const idFromUser = req.params.account;
     const finder = dB.find((each: Balance) => each.account === idFromUser);
     res.status(StatusCodes.ACCEPTED).json(finder);
   } catch (error) {}

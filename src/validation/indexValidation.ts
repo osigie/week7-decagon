@@ -12,18 +12,16 @@ export const createAccountSchema = z.object({
 export const transferSchema = z.object({
   body: z.object({
     from: z
-      .number({
+      .string({
         required_error: 'Sender account required',
       })
-      .positive({ message: 'account must be positive' })
-      .int({ message: 'account must be an integer' }),
+      .length(10, { message: 'Must be exactly 10 characters long' }),
 
     to: z
-      .number({
+      .string({
         required_error: 'Beneficiary account required',
       })
-      .positive({ message: 'account must be positive' })
-      .int({ message: 'account must be an integer' }),
+      .length(10, { message: 'Must be exactly 10 characters long' }),
     amount: z.number({
       required_error: 'Transfer amount required',
     }),

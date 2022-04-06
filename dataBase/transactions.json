@@ -1,42 +1,10 @@
 [
    {
-      "reference": "fab96ac1-8294-4b30-bf06-a64f93268b7b",
-      "senderAccount": 9869845862,
-      "amount": 400,
-      "receiverAccount": 7657752700,
+      "reference": "23088cad-c96f-4611-9b29-10b4b9f520ef",
+      "senderAccount": "8450198449",
+      "amount": 1000,
+      "receiverAccount": "7209149290",
       "transferDescription": "successfull",
-      "createdAt": "4/6/2022, 12:53:51 AM"
-   },
-   {
-      "reference": "da3fd7d9-c3ff-4b30-8b1e-2cfe3d6f5193",
-      "senderAccount": 9869845862,
-      "amount": 20,
-      "receiverAccount": 7657752700,
-      "transferDescription": "successfull",
-      "createdAt": "4/6/2022, 12:54:10 AM"
-   },
-   {
-      "reference": "a0243d0d-9f75-4a9a-86ff-5e0027fb0b9c",
-      "senderAccount": 9869845862,
-      "amount": 20,
-      "receiverAccount": 7657752700,
-      "transferDescription": "successfull",
-      "createdAt": "4/6/2022, 12:54:14 AM"
-   },
-   {
-      "reference": "e0184187-1d06-4e24-98ca-a3c042eb76f4",
-      "senderAccount": 9869845862,
-      "amount": 20,
-      "receiverAccount": 7657752700,
-      "transferDescription": "successfull",
-      "createdAt": "4/6/2022, 12:54:28 AM"
-   },
-   {
-      "reference": "ad384797-2cf0-4dd3-bcd7-727fbec258cb",
-      "senderAccount": 9869845862,
-      "amount": 20,
-      "receiverAccount": 7657752700,
-      "transferDescription": "successfull",
-      "createdAt": "4/6/2022, 12:54:30 AM"
+      "createdAt": "4/6/2022, 8:19:36 AM"
    }
 ]

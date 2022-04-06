@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon tsc bin/www"
+    "build": "tsc",
+    "dev": "tsc & ts-node-dev ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,6 +16,7 @@
     "http-status-codes": "~2.2.0",
     "morgan": "~1.10.0",
     "nanoid": "~3.3.2",
+    "ts-node-dev": "~1.1.8",
     "tsc-node": "~0.0.3",
     "uuid": "~8.3.2",
     "zod": "~3.14.4"
