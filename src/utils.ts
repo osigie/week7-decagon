@@ -26,6 +26,4 @@ export async function create2() {
   return JSON.parse(balanceDb);
 }
 
-// //middleware to check if there is user
-
 export const nanoid = customAlphabet('1234567890', 10);

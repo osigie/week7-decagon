@@ -9,11 +9,13 @@ var debug = require('debug')('008-setup:server');
 var http = require('http');
 const fs = require('fs/promises');
 const path = require('path');
+
 /**
  * Get port from environment and store in Express.
  */
 
 const pathData1 = path.join(__dirname, '../dataBase/transactions.json');
+
 const pathData2 = path.join(__dirname, '../dataBase/balances.json');
 
 var port = normalizePort(process.env.PORT || '3000');
@@ -102,3 +104,5 @@ function onListening() {
   var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+module.exports = server
