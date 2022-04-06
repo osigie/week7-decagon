@@ -1,5 +1,5 @@
 export interface Balance {
-  id: string;
+  account: number;
   balance: number;
   createdAt: string;
 }

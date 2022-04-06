@@ -15,12 +15,13 @@ import { Balance } from '../interface';
 const createAccount = async (req: Request, res: Response) => {
   try {
     const accN = await nanoid();
+    const numberAcc = +accN;
     let dB = await create2();
     const userInput = req.body;
     const updatedBody = Object.assign(
-      { id: 0 },
+      { account: 0 },
       { balance: userInput.balance },
-      { id: accN },
+      { account: numberAcc },
       { createdAt: new Date().toLocaleString('en-US', { timeZone: 'UTC' }) },
     );
     dB.push(updatedBody);
@@ -37,8 +38,8 @@ const createAccount = async (req: Request, res: Response) => {
 const getAccount = async (req: Request, res: Response) => {
   try {
     let dB = await create2();
-    const idFromUser = req.params.id;
-    const finder = dB.find((each: Balance) => each.id === idFromUser);
+    const idFromUser = +req.params.id;
+    const finder = dB.find((each: Balance) => each.account === idFromUser);
     res.status(StatusCodes.ACCEPTED).json(finder);
   } catch (error) {}
 };
@@ -58,10 +59,10 @@ export const transfer = async (req: Request, res: Response) => {
     let transactionsDb = await create1();
 
     const indexFrom = accountDb.findIndex(
-      (each: Balance) => each.id === req.body.from,
+      (each: Balance) => each.account === req.body.from,
     );
     const indexTo = accountDb.findIndex(
-      (each: Balance) => each.id === req.body.to,
+      (each: Balance) => each.account === req.body.to,
     );
 
     if (req.body.amount > accountDb[indexFrom].balance) {
