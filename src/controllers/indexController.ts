@@ -28,6 +28,8 @@ const createAccount = async (req: Request, res: Response) => {
       res.status(StatusCodes.CREATED).json(updatedBody);
     });
   } catch (error) {
+    console.log(balancesPath);
+    console.log(error);
     res
       .status(StatusCodes.BAD_REQUEST)
       .json({ msg: 'please input right details' });
@@ -39,15 +41,17 @@ const getAccount = async (req: Request, res: Response) => {
     let dB = await create2();
     const idFromUser = req.params.account;
     const finder = dB.find((each: Balance) => each.account === idFromUser);
-    res.status(StatusCodes.ACCEPTED).json(finder);
-  } catch (error) {}
+    res.status(StatusCodes.OK).json(finder);
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json(error);
+  }
 };
 
 //Get all account
 const getAllAccount = async (req: Request, res: Response) => {
   try {
     let dB = await create2();
-    res.status(StatusCodes.ACCEPTED).json(dB);
+    res.status(StatusCodes.OK).json(dB);
   } catch (error) {}
 };
 
@@ -97,7 +101,7 @@ export const transfer = async (req: Request, res: Response) => {
         transactionsPath,
         JSON.stringify(transactionsDb, null, 3),
         (err) => {
-          res.status(StatusCodes.ACCEPTED).json(transactions);
+          res.status(StatusCodes.OK).json(transactions);
         },
       );
     }

@@ -4,15 +4,14 @@ import path from 'path';
 import { customAlphabet } from 'nanoid/async';
 import { StatusCodes } from 'http-status-codes';
 
+
 export const transactionsPath = path.join(
   __dirname,
-  '..',
   '..',
   'dataBase/transactions.json',
 );
 export const balancesPath = path.join(
   __dirname,
-  '..',
   '..',
   'dataBase/balances.json',
 );

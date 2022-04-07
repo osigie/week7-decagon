@@ -15,7 +15,7 @@ import {
 router
   .route('/create-account')
   .post(validate(createAccountSchema), createAccount);
-router.route('/balance/:id').get(getAccount);
+router.route('/balance/:account').get(getAccount);
 router.route('/balance').get(getAllAccount);
 router.route('/transfer').post(validate(transferSchema), transfer);
 export default router;
